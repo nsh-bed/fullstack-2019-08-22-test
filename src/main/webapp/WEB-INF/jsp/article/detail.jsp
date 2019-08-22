@@ -6,7 +6,10 @@
 <c:set var="pageTitle" value="게시물 상세" />
 <%@ include file="../part/head.jspf"%>
 <script>
-	var articleId = parseInt('${param.id}');
+	var loginMemberPermissionLevel = $
+	{
+		loginedMember.permissionLevel > 0 ? loginedMember.permissionLevel : 0
+	};
 </script>
 
 <script>
@@ -24,12 +27,24 @@
 </script>
 
 <style>
+.deletable-item {
+	display: none;
+}
+
+.deletable .deletable-item {
+	display: block;
+}
+
 .editable-item {
 	display: none;
 }
 
 .editable .editable-item {
 	display: block;
+}
+
+.editable a.editable-item, .deletable a.deletable-item {
+	display: inline-block;
 }
 
 .article-replies-list tr .edit-mode-visible {
@@ -77,7 +92,8 @@
 
 	<div class="add-reply-form-box con table-common">
 
-		<form name="add-reply-form" onsubmit="Article__doAddReply(this); return false;">
+		<form name="add-reply-form"
+			onsubmit="Article__doAddReply(this); return false;">
 			<input type="hidden" name="articleId" value="${article.id}">
 			<table>
 				<colgroup>
