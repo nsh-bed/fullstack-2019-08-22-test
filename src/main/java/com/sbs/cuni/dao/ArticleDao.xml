@@ -94,6 +94,7 @@
 		title = #{title},
 		body = #{body},
 		boardId = #{boardId},
+		hit = 0,
 		memberId = #{memberId}
 	</insert>
 
@@ -108,6 +109,12 @@
 		body =
 		#{body}
 	</insert>
+
+	<update id="hitUp" parameterType="map">
+		UPDATE article
+		SET hit = hit + 1
+		WHERE id = #{id}
+	</update>
 
 	<update id="modify">
 		UPDATE article
@@ -135,7 +142,8 @@
 
 	<delete id="deleteReplies">
 		DELETE FROM articleReply
-		WHERE articleId = #{articleId}
+		WHERE articleId =
+		#{articleId}
 	</delete>
 
 	<delete id="deleteReply">
@@ -151,6 +159,7 @@
 		<id property="memberId" column="memberId" />
 		<id property="boardId" column="boardId" />
 		<id property="passwd" column="passwd" />
+		<id property="hit" column="hit" />
 		<association property="extra" javaType="java.util.HashMap">
 			<result property="repliesCount" column="extra__repliesCount" />
 		</association>

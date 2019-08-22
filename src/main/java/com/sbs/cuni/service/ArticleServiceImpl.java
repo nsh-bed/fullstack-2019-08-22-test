@@ -198,5 +198,9 @@ public class ArticleServiceImpl implements ArticleService {
 	public Board getBoard(long id) {
 		return articleDao.getBoard(id);
 	}
+	
+	public long hitUp(long id) {
+		return articleDao.hitUp(id);
+	}
 
 }

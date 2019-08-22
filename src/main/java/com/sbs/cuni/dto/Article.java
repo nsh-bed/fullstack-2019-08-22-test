@@ -21,8 +21,8 @@ public class Article {
 	private String passwd;
 	private long memberId;
 	private long boardId;
+	private long hit;
 	private Map<String, String> extra;
-
 	public String getBodyForPrint() {
 		String bodyForPrint = HtmlUtils.htmlEscape(body);
 		bodyForPrint = bodyForPrint.replace("\n", "<br>");
